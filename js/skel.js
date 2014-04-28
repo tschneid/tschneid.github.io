@@ -702,7 +702,7 @@ var skel = (function() { var _ = {
 						b = _.breakpoints[a[k]];
 						
 						// No elements? Skip it.
-							if (b.elements.length == 0)
+							if (typeof b === "undefined" || b.elements.length === 0)
 								return;
 								
 						// Add the breakpoint's elements to the state's cache
