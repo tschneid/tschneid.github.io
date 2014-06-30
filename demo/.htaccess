@@ -1,4 +1,0 @@
-AuthType Basic
-AuthName "Demo Bereich"
-AuthUserFile ../.htpasswd
-require user EXIST
