@@ -62,8 +62,7 @@
 				        subheading[0] = 'Trust me, I\'m an engineer!';
 				        subheading[1] = 'Here be dragons.';
 				        subheading[2] = 'It\'s kind of fun to do the impossible.</br>(Walt Disney)';
-				        subheading[3] = 'All things are difficult before they are easy.</br>(Thomas Fuller)';
-				        subheading[4] = 'We work to become, not to acquire.</br>(Elbert Hubbard)';
+				        subheading[3] = 'We work to become, not to acquire.</br>(Elbert Hubbard)';
 
 				        var ridx = Math.round(Math.random()*(subheading.length-1));
 				        document.write(subheading[ridx]);
@@ -107,7 +106,7 @@
 							<li><a href="https://plus.google.com/+TimoSchneider1" class="fa fa-google-plus solo"><span>Google+</span></a></li>
 							<li><a href="https://www.xing.com/profile/Timo_Schneider82" class="fa fa-xing solo"><span>Xing</span></a></li>
 							<li><a href="https://www.linkedin.com/profile/view?id=230909248" class="fa fa-linkedin solo"><span>LinkedIn</span></a></li>
-							<li><a href="mailto:timo.schneider@student.kit.edu" class="fa fa-envelope solo"><span>Email</span></a></li>
+							<li><a href="mailto:timo.schneider@kit.edu" class="fa fa-envelope solo"><span>Email</span></a></li>
 						</ul>
 				
 				</div>
@@ -138,7 +137,7 @@
 
 							<div class="about-container">
 
-							<span class="publication image"><img src="images/mebackpack.jpg" /></span>
+							<span class="publication image"><img src="images/mebackpack2.jpg" /></span>
 							
 							<p>I'm a research assistant at the <a href="https://cvhci.anthropomatik.kit.edu/">Computer Vision for Human-Computer Interaction</a> (CVHCI) Lab, <a href="https://www.kit.edu">Karlsruhe Institute of Technology</a>, Germany, where I completed my Diploma (MSc) in Informatics in 2014.</p>
 							<p> My research interests include Computer Vision, Machine Learning, and especially camera-based Gaze Estimation (or Eye Tracking).</p>
@@ -198,44 +197,11 @@
 						    <p>
 					      <div class="publication-details" id="schneider2014appearance_details">
 					        <p><strong>Abstract: </strong>
-					        Vision-based gaze estimation promises to be a cheap and accessible alternative to
-									dedicated gaze tracking hardware. Since cameras are ubiquitous in our personal
-									computing devices, like laptops, smartphones, and tablets, this offers opportunities
-									for a plethora of new applications. By utilizing gaze behavior as another natural
-									means of non-verbal communication, we can foster more convenient and natural
-									human-computer interaction.</p>
-									<p>Remote gaze estimation does not need any physical contact with the user. However,
-									it requires a calibration step, in which the user has to look at distinct calibration
-									points, which in turn demands cooperation and effort. By omitting this calibration
-									and using data of other calibrated persons, the estimation precision notably suffers,
-									due to the person-specific eye appearances. As a solution, we propose Synchronized
-									Delaunay Submanifold Embedding (SDSE), a manifold alignment technique that
-									adjusts the persons’ eye patch features with similar gaze directions, to form a person-
-									independent manifold. Thereby, we overcome the problem of dissimilar appearances
-									and improve the performance for the subsequent calibration-free gaze estimation.
-									Our tests with SDSE are conducted on two different gaze datasets, gawKIT and
-									Columbia, for which we outperform the baseline by 10 % and 24 %, respectively.</p>
-									<p>Comprehensive training data is the key to build robust regression models. We use
-									the available data to synthesize new eye images by using optical flow for image in-
-									terpolation. This method non-linearly expands the existing manifolds and therefore
-									provides supplemental information for training regression models. Here, we cannot
-									beat the baseline without synthesized images, however, we decrease the estimation
-									error for most configurations – e.g., Histograms of Oriented Gradients (HOG) in com-
-									bination with k Nearest Neighbors (kNN) by 30 %, or multilevel-HOG with Principal
-									Component Analysis (PCA) and Support Vector Regression (SVR) by 10 %.</p>
-									<p>The gaze estimation performance is tested on combinations of prominent features
-									and regression methods, plus low-dimensional embedding by PCA. Amongst oth-
-									ers, we compare the raw image, HOG and multilevel-HOG, Local Binary Patterns
-									(LBP), or Discrete Cosine Transform (DCT) as features, and reduce the dimen-
-									sionality to 256, 128, 64, 32, 16, and 8 dimensions, respectively. For regression we
-									employ the aforementioned SVR and kNN, as well as Gaussian Processes Regression
-									(GPR), Relevance Vector Regression (RVR), Regression Trees (Regtrees), Partial
-									Least Squares (PLS), and Multivariate Adaptive Regression Splines (Splines). Be-
-									sides, we use statistical tests to compare the results with and without SDSE, as
-									well as with and without image synthesis, to ensure that the measured performance
-									improvement is statistical significant. The observed improvement in the majority
-									of combinations encourages the future use of the proposed approaches for precise
-									calibration-free gaze estimation.</p>
+					        Vision-based gaze estimation promises to be a cheap and accessible alternative to dedicated gaze tracking hardware. Since cameras are ubiquitous in our personal computing devices, like laptops, smartphones, and tablets, this offers opportunities	for a plethora of new applications. By utilizing gaze behavior as another natural means of non-verbal communication, we can foster more convenient and natural human-computer interaction.</p>
+									<p>Remote gaze estimation does not need any physical contact with the user. However, it requires a calibration step, in which the user has to look at distinct calibration points, which in turn demands cooperation and effort. By omitting this calibration and using data of other calibrated persons, the estimation precision notably suffers, due to the person-specific eye appearances. As a solution, we propose Synchronized Delaunay Submanifold Embedding (SDSE), a manifold alignment technique that adjusts the persons’ eye patch features with similar gaze directions, to form a person-independent manifold. Thereby, we overcome the problem of dissimilar appearances and improve the performance for the subsequent calibration-free gaze estimation. Our tests with SDSE are conducted on two different gaze datasets, gawKIT and
+									Columbia, for which we outperform the baseline by 10% and 24%, respectively.</p>
+									<p>Comprehensive training data is the key to build robust regression models. We use the available data to synthesize new eye images by using optical flow for image interpolation. This method non-linearly expands the existing manifolds and therefore provides supplemental information for training regression models. Here, we cannot beat the baseline without synthesized images, however, we decrease the estimation error for most configurations – e.g., Histograms of Oriented Gradients (HOG) in combination with k Nearest Neighbors (kNN) by 30 %, or multilevel-HOG with Principal Component Analysis (PCA) and Support Vector Regression (SVR) by 10%.</p>
+									<p>The gaze estimation performance is tested on combinations of prominent features and regression methods, plus low-dimensional embedding by PCA. Amongst others, we compare the raw image, HOG and multilevel-HOG, Local Binary Patterns (LBP), or Discrete Cosine Transform (DCT) as features, and reduce the dimensionality to 256, 128, 64, 32, 16, and 8 dimensions, respectively. For regression we employ the aforementioned SVR and kNN, as well as Gaussian Processes Regression (GPR), Relevance Vector Regression (RVR), Regression Trees (Regtrees), Partial Least Squares (PLS), and Multivariate Adaptive Regression Splines (Splines). Besides, we use statistical tests to compare the results with and without SDSE, as well as with and without image synthesis, to ensure that the measured performance improvement is statistical significant. The observed improvement in the majority of combinations encourages the future use of the proposed approaches for precise calibration-free gaze estimation.</p>
 					        <strong>Keywords: </strong>Gaze Estimation, Manifold Alignment, Image Synthesis, Calibration-Free, Machine Learning</br>
 					      </div>
 						    </p>
@@ -255,30 +221,11 @@
 						    <p>
 					      <div class="publication-details" id="schneider2014viewing_details">
 					        <p><strong>Abstract: </strong>
-					        Gaze estimation refers to the task of estimating the point in 3-D space, at which the user
-									is looking at, and indicates where his mental focus lies on. Alternatively the visual axis
-									and the 3-D position of the user’s pupil can be calculated.</p>
-									<p>For this purpose, numerous approaches have been developed over the past three decades,
-									and are required for various fields of application—from human-computer interfaces to
-									psychological studies. Current commercial systems primarily use infrared light emitting
-									diodes and image sensors to determine the position and orientation of the eye. But,
-									this techniques require expensive hardware and can often not be used under uncontrolled
-									lighting conditions, e.g., outdoors.</p>
-									<p>Gaze estimation can be utilized for a more natural and convenient human-robot interaction.
-									The behaviour of our eyes plays an important role in natural conversation. For example,
-									we glimpse at objects of interest when we talk about them, and, without naming them
-									explicitly, our conversational partner will know what we are referring to. Furthermore we
-									signalize attention or the lack of it, while maintaining eye contact or looking in another
-									direction, respectively. Natural conversation is all about sensing these inconspicuous non-
-									verbal signs. Consequently a robot needs to have these information, in order to make the
-									human-robot interaction as natural as talking to another human.</p>
-									<p>In 2010, Reale, Hung and Yin published a paper entitled “Viewing Direction Estimation
-									Based on 3-D Eyeball Construction for HRI”, where they describe a vision-based approach
-									to estimate the gaze of a person under the aspect of human-robot interaction, that is able
-									to work with normal webcams. This Study Thesis first describes this approach in detail
-									and discusses potential aspects of improvement.</p>
-									<p>The gaze estimation approach has been implemented and evaluated and finally ideas for
-									enhancements and future work will be collected.</p>
+					        Gaze estimation refers to the task of estimating the point in 3-D space, at which the user is looking at, and indicates where his mental focus lies on. Alternatively the visual axis and the 3-D position of the user’s pupil can be calculated.</p>
+									<p>For this purpose, numerous approaches have been developed over the past three decades, and are required for various fields of application—from human-computer interfaces to psychological studies. Current commercial systems primarily use infrared light emitting diodes and image sensors to determine the position and orientation of the eye. But, this techniques require expensive hardware and can often not be used under uncontrolled lighting conditions, e.g., outdoors.</p>
+									<p>Gaze estimation can be utilized for a more natural and convenient human-robot interaction. The behaviour of our eyes plays an important role in natural conversation. For example, we glimpse at objects of interest when we talk about them, and, without naming them explicitly, our conversational partner will know what we are referring to. Furthermore we signalize attention or the lack of it, while maintaining eye contact or looking in another direction, respectively. Natural conversation is all about sensing these inconspicuous non-verbal signs. Consequently a robot needs to have these information, in order to make the human-robot interaction as natural as talking to another human.</p>
+									<p>In 2010, Reale, Hung and Yin published a paper entitled “Viewing Direction Estimation Based on 3-D Eyeball Construction for HRI”, where they describe a vision-based approach to estimate the gaze of a person under the aspect of human-robot interaction, that is able to work with normal webcams. This Study Thesis first describes this approach in detail and discusses potential aspects of improvement.</p>
+									<p>The gaze estimation approach has been implemented and evaluated and finally ideas for enhancements and future work will be collected.</p>
 					        <strong>Keywords: </strong>Gaze Estimation, Eyeball Model</br>
 					      </div>
 						    </p>
@@ -369,8 +316,8 @@
 							<p>If you have any questions, requests, or information to share, please don't hesitate to contact me.
 							I'll do my best to answer as quickly as possible.</p>
 
-							You can reach me via</br>
-							<a href="mailto:timo.schneider@student.kit.edu">timo.schneider@student.kit.edu</a>
+							You can reach me via 
+							<a href="mailto:timo.schneider@kit.edu">timo.schneider@kit.edu</a>
 							<ul class="icons big">
 							<!--<li><a href="#" class="fa fa-twitter solo"><span>Twitter</span></a></li>--> 
 							<!--<li><a href="#" class="fa fa-facebook solo"><span>Facebook</span></a></li> Sorry, I'm not on facebook ;) -->
@@ -407,7 +354,7 @@
 				
 				<!-- Copyright -->
 					<div class="copyright">
-						<p>&copy; 2014 Timo Schneider. All rights reserved.</p>
+						<p>&copy; 2015 Timo Schneider. All rights reserved.</p>
 						<ul class="menu">
 							<li>Hosted on <a href="https://pages.github.com/">GitHub Pages</a> &ndash; Design by <a href="http://html5up.net">HTML5 UP</a></li>
 						</ul>
