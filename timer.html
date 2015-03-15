@@ -1,0 +1,263 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+    <style>
+    .timer {
+      font-size: 5em;
+    }
+
+    body {
+      text-align: center;
+    }
+    </style>
+</head>
+<body>
+
+<div class="container">
+  
+  <h1>Training Timer</h1>
+
+  <div class="row">
+    
+    <div class="col-lg-4">
+      <h2>Workout Timer</h2>
+      <div class="alert timer" id="workout-timer"></div>
+    </div>
+    <div class="col-lg-4">
+      <h2>Rest Timer</h2>
+      <div class="alert timer" id="rest-timer"></div>
+    </div>
+    <div class="col-lg-4">
+      <h2>Round</h2>
+      <div class="timer" id="rounds"></div>
+    </div>
+    <div class="col-lg-12">
+      <button id="button-start" class="btn btn-lg btn-success">Start</button>
+      <button id="button-pause" class="btn btn-lg btn-danger">Pause</button>
+      <button id="button-reset" class="btn btn-lg btn-danger">Reset</button>
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+var workoutTimerElement = document.getElementById('workout-timer');
+var restTimerElement = document.getElementById('rest-timer');
+var roundsElement = document.getElementById('rounds');
+var buttonStart = document.getElementById('button-start');
+var buttonPause = document.getElementById('button-pause');
+var buttonReset = document.getElementById('button-reset');
+buttonPause.disabled = true;
+
+
+// Internally we store everything in milliseconds
+var currentTime = parseInt(workoutTimerElement.innerHTML) * 1000;
+var refTime;
+
+
+//
+// Timer core
+//
+
+var Timer = (function(){
+
+  function Timer(startTime) {
+    this.time = startTime || 10;
+    this.time *= 1000; 
+  }
+
+  Timer.prototype.onStart = function(startTime) {};
+  Timer.prototype.onUpdate = function(time) {};
+  Timer.prototype.onFinish = function() {};
+
+  Timer.prototype.start = function() {
+    this.reset();
+    this.onStart(this.time);
+    this.started = true;
+    this.update();
+  };
+
+  Timer.prototype.reset = function() {
+    this.referenceTime = Date.now() + this.time;
+  };
+
+  Timer.prototype.pause = function() {
+    this.currentTime = this.referenceTime - Date.now();
+    clearTimeout(this.timeout);
+  };
+
+  Timer.prototype.resume = function() {
+    if (this.started) {
+      this.referenceTime = Date.now() + this.currentTime;
+      this.update();
+    }
+  };
+
+  Timer.prototype.update = function() {
+    var time = this.referenceTime - Date.now();
+    if (time < 0) time = 0;
+    if (time === 0) {
+      this.started = false;
+      this.onFinish();
+    } else {
+      this.onUpdate(time);
+      // Repeat (every 50 ms)
+      var self = this;
+      this.timeout = setTimeout(function() {self.update();}, 50);
+    }
+  };
+
+  return Timer;
+})();
+
+
+
+// @TODO input them in HTML
+var workoutTime = 10;
+var restTime = 5;
+var rounds = 3;
+var notifyTime = 3;
+
+
+var currentRound = 1;
+var nextNotifyTime;
+resetHTML();
+
+function resetHTML() {
+  workoutTimerElement.innerHTML = workoutTime;
+  restTimerElement.innerHTML = restTime;
+  roundsElement.innerHTML = currentRound + '/' + rounds;
+}
+
+// Initialize timers.
+var workoutTimer = new Timer(workoutTime);
+var restTimer = new Timer(restTime);
+
+//
+// What happens when the timer starts, updates or finishes is encapsulated in
+// separate functions to clearly separate the core functionality from frontend
+// modification.
+//
+workoutTimer.onStart = function() {
+  buttonStart.disabled = true;
+  buttonPause.disabled = false;
+  workoutTimerElement.classList.add('alert-success');
+  nextNotifyTime = Math.min(notifyTime, workoutTime);
+};
+workoutTimer.onUpdate = function(time) {
+  workoutTimerElement.innerHTML = time/1000;
+
+  // Play notification tone.
+  if (time/1000 < nextNotifyTime) {
+    beep();
+    --nextNotifyTime;
+  }
+};
+workoutTimer.onFinish = function() {
+  // Reset.
+  workoutTimerElement.classList.remove('alert-success');
+  workoutTimerElement.innerHTML = workoutTimer.time/1000;
+  
+  // Reset notification tone.
+  beep(600, 800);
+
+  // Start rest timer.
+  restTimer.start();
+};
+
+
+
+restTimer.onStart = function() {
+  restTimerElement.classList.add('alert-success');
+  nextNotifyTime = Math.min(notifyTime, restTime);
+};
+restTimer.onUpdate = function(time) {
+  restTimerElement.innerHTML = time/1000;
+
+  // Play notification tone.
+  if (time/1000 < nextNotifyTime) {
+    beep();
+    --nextNotifyTime;
+  }
+};
+restTimer.onFinish = function() {
+  restTimerElement.classList.remove('alert-success');
+  restTimerElement.innerHTML = restTimer.time/1000;
+
+  // Reset notification tone.
+  nextNotifyTime = Math.min(notifyTime, workoutTime);
+  beep(600, 800);
+
+  ++currentRound;
+  if (currentRound <= rounds) {
+    roundsElement.innerHTML = currentRound + '/' + rounds;
+    workoutTimer.start();
+  } else {
+    buttonStart.disabled = false;
+    buttonPause.disabled = true;
+  }
+};
+
+
+buttonStart.onclick = function() {
+  currentRound = 1;
+  resetHTML();
+  workoutTimer.start();
+};
+
+var paused = false;
+buttonPause.onclick = function() {
+  if (paused) {
+    buttonPause.innerHTML = 'Pause';
+    workoutTimer.resume();
+    restTimer.resume();
+    paused = false;
+  } else {
+    workoutTimer.pause();
+    restTimer.pause();
+    buttonPause.innerHTML = 'Resume';
+    paused = true;
+  }
+}
+
+// This reloads the whole page. There should be a nicer way, but for now this
+// it the easiest solution.
+buttonReset.onclick = function() {
+  window.location.reload();
+}
+
+
+//
+// Audio functions
+//
+
+var context = new AudioContext();
+ 
+/* VCO */
+var vco = context.createOscillator();
+vco.type = vco.SINE;
+vco.start(0);
+
+/* VCA */
+var vca = context.createGain();
+vca.gain.value = 0;
+
+/* Connections */
+vco.connect(vca);
+vca.connect(context.destination);
+
+function beep(freq, duration) {
+  vco.frequency.value = freq || 440;
+  vca.gain.value = 1;
+  setTimeout(function() {vca.gain.value = 0;}, duration || 200);
+}
+
+
+
+</script>
+
+</body>
+</html>
