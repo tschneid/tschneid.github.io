@@ -370,7 +370,7 @@ label.span4 {
 	padding:3em 0;
 }
 .copyrights p {
-	color: #000;
+	color: #555;
 	font-size: 1.2em;
 	font-weight: 400;
 }
@@ -479,7 +479,7 @@ label.span4 {
 		left: 58px;
 	}
 	.bottom-grid {
-		padding: 1em 0;
+		padding: 6em 0;
 	}
 	.grids {
 		margin-top: 3.5em;
