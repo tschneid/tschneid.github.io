@@ -1,22 +1,32 @@
+// Mixins
+.transition (@transition) {
+	-webkit-transition: @transition;  
+	-moz-transition:    @transition;
+	-ms-transition:     @transition; 
+	-o-transition:      @transition;  
+}
+
+.border-radius (@radius: 5px) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius:    @radius;
+	border-radius:         @radius;
+	-moz-background-clip:    padding;
+	-webkit-background-clip: padding-box;
+	background-clip:         padding-box;
+}
+
+// Style
 body{
 	padding:0;
 	margin:0;
 	font-family: 'Roboto', sans-serif;
 	background:#fff;
 }
-body a{
-    transition:0.5s all;
-	-webkit-transition:0.5s all;
-	-moz-transition:0.5s all;
-	-o-transition:0.5s all;
-	-ms-transition:0.5s all;
+body a {
+	.transition(0.5s all);
 }
 input[type="button"],input[type="submit"]{
-	transition:0.5s all;
-	-webkit-transition:0.5s all;
-	-moz-transition:0.5s all;
-	-o-transition:0.5s all;
-	-ms-transition:0.5s all;
+	.transition(0.5s all);
 }
 h1,h2,h3,h4,h5,h6{
 	margin:0;			   
@@ -45,31 +55,26 @@ label{
 .user a {
 	display:block;
 }
+.user img {
+	.border-radius(5px);
+}
 
 .social-icons {
 	// float:right;
 	margin-top: 1.8em;
 }
 .social-icons i.fa {
-	width: 45px;
-	height: 45px;
+	width: 48px;
+	height: 48px;
 	/*display: inline-block;*/
 	margin-right: 8px;
-	font-size: 2.5em;
+	font-size: 3em;
 	color: #ccc;
-	transition:0.5s all;
-	-webkit-transition:0.5s all;
-	-moz-transition:0.5s all;
-	-o-transition:0.5s all;
-	-ms-transition:0.5s all;
+	.transition(0.5s all);
 }
 .social-icons i.fa:hover {
 	color: #ef5651;
-	transition:0.5s all;
-	-webkit-transition:0.5s all;
-	-moz-transition:0.5s all;
-	-o-transition:0.5s all;
-	-ms-transition:0.5s all;
+	.transition(0.5s all);
 }
 
 
@@ -140,7 +145,7 @@ label{
 }
 
 .top-left-grid label.color1 {
-	width: 455px;
+	width: 90%;
 	height: 4px;
 	background:#34a09f;
 	position:absolute;
@@ -148,7 +153,7 @@ label{
 	left: 0;
 }
 .top-left-grid label.color2 {
-	width: 460px;
+	width: 92%;
 	height: 4px;
 	background:#b74488;
 	position:absolute;
@@ -156,7 +161,7 @@ label{
 	left: 0;
 }
 .top-left-grid label.color3 {
-	width: 390px;
+	width: 70%;
 	height: 4px;
 	background:#d58855;
 	position:absolute;
@@ -164,7 +169,7 @@ label{
 	left: 0;
 }
 .top-left-grid label.color4 {
-	width: 280px;
+	width: 80%;
 	height: 4px;
 	background:#8fa065;
 	position:absolute;
@@ -172,7 +177,7 @@ label{
 	left: 0;
 }
 .top-left-grid label.color5 {
-	width: 340px;
+	width: 60%;
 	height: 4px;
 	background:#7848c0;
 	position:absolute;
@@ -180,7 +185,7 @@ label{
 	left: 0;
 }
 .top-right-grid label.color6 {
-	width: 440px;
+	width: 70%;
 	height: 4px;
 	background:#6083f0;
 	position:absolute;
@@ -188,7 +193,7 @@ label{
 	left: 0;
 }
 .top-right-grid label.color7 {
-	width:300px;
+	width: 90%;
 	height: 4px;
 	background:#b79c20;
 	position:absolute;
@@ -196,7 +201,7 @@ label{
 	left: 0;
 }
 .top-right-grid label.color8 {
-	width: 380px;
+	width: 95%;
 	height: 4px;
 	background:#44b76f;
 	position:absolute;
@@ -204,7 +209,7 @@ label{
 	left: 0;
 }
 .top-right-grid label.color9 {
-	width:300px;
+	width: 85%;
 	height: 4px;
 	background:#f76040;
 	position:absolute;
@@ -212,7 +217,7 @@ label{
 	left: 0;
 }
 .top-right-grid label.color10 {
-	width: 380px;
+	width: 70%;
 	height: 4px;
 	background:#d8d8d8;
 	position:absolute;
@@ -234,11 +239,7 @@ label{
 	width:13%;
 	margin-right:3%;
 	background:#fff;
-	border-radius: 6px;
-	-webkit-border-radius: 6px;
-	-moz-border-radius: 6px;
-	-o-border-radius: 6px;
-	-ms-border-radius: 6px;	
+	.border-radius(6px);
 	padding:1.6em 0;
 	position:relative;	
 }
@@ -329,11 +330,7 @@ label.span4 {
 	width:17%;
 	margin-right:5%;
 	background:#ef5651;
-	border-radius: 6px;
-	-webkit-border-radius: 6px;
-	-moz-border-radius: 6px;
-	-o-border-radius: 6px;
-	-ms-border-radius: 6px;	
+	.border-radius(6px);
 	padding:1.6em 0;
 }
 .year2{
@@ -366,7 +363,7 @@ label.span4 {
 	padding:3em 0;
 }
 .copyrights p {
-	color: #000;
+	color: #555;
 	font-size: 1.2em;
 	font-weight: 400;
 }
@@ -402,7 +399,7 @@ label.span4 {
 		line-height: 1.7em;
 	}
 	.user img {
-		width: 95%;
+		margin-top: 2em;
 	}
 }
 @media screen and (max-width: 1024px) {
@@ -411,9 +408,6 @@ label.span4 {
 	}
 	.about_user div {
 		font-size: 1.2em;
-	}
-	.user img {
-		width: 80%;
 	}
 	.social-icons {
 		margin-top: 1.5em;
@@ -436,34 +430,6 @@ label.span4 {
 	.top-grid p {
 		font-size: 1.7em;
 		padding: 1em 0;
-	}
-	.top-left-grid label.color1,.top-right-grid label.color6 {
-		width: 400px;
-		height: 3px;	
-	}
-	.top-left-grid label.color2 {
-		width: 405px;
-		height: 3px;
-	}
-	.top-left-grid label.color3 {
-		width: 335px;
-		height: 3px;
-	}
-	.top-left-grid label.color4 {
-		width: 250px;
-		height: 3px;
-	}
-	.top-left-grid label.color5 {
-		width: 285px;
-		height: 3px;
-	}
-	.top-right-grid label.color7,.top-right-grid label.color9 {
-		width: 240px;
-		height: 3px;
-	}
-	.top-right-grid label.color8,.top-right-grid label.color10 {
-		width: 320px;
-		height: 3px;
 	}
 	.top-grid {
 		padding: 5em 0;
@@ -595,33 +561,8 @@ label.span4 {
 	.top-grid {
 		padding: 4em 0;
 	}
-	.top-left-grid label.color1, .top-right-grid label.color6{
-		width: 580px;
-		height: 3px;
-	}
-	.top-left-grid label.color2 {
-		width: 600px;
-	}
-	.top-left-grid label.color3 {
-		width: 450px;
-	}
-	.top-left-grid label.color5 {
-		width: 390px;
-	}
-	.top-left-grid label.color4 {
-		width: 300px;
-	}
-	.top-right-grid label.color7, .top-right-grid label.color9 {
-		width: 330px;
-	}
-	.top-right-grid label.color8, .top-right-grid label.color10 {
-		width: 430px;
-	}
 	.text p {
 		font-size: 1.6em;
-	}
-	.user img {
-		width: 75%;
 	}
 	.social-icons i {
 		margin-right: 2px;
@@ -678,34 +619,6 @@ label.span4 {
 		font-size: 1.5em;
 		padding: 0.9em 0;
 	}
-	.top-left-grid label.color1, .top-right-grid label.color6 {
-		width: 470px;
-		height: 2px;
-	}
-	.top-left-grid label.color2 {
-		width: 490px;
-		height: 2px;
-	}
-	.top-left-grid label.color3 {
-		width: 375px;
-		height: 2px;
-	}
-	.top-left-grid label.color4 {
-		width: 250px;
-		height: 2px;
-	}
-	.top-left-grid label.color5 {
-		width: 310px;
-		height: 2px;
-	}
-	.top-right-grid label.color7, .top-right-grid label.color9 {
-		width: 265px;
-		height: 2px;
-	}
-	.top-right-grid label.color8, .top-right-grid label.color10 {
-		width: 360px;
-		height: 2px;
-	}
 	.middle-grid {
 		padding: 3em 0;
 	}
@@ -749,9 +662,6 @@ label.span4 {
 	.grids {
 		margin-top: 3em;
 	}
-	.user img {
-		width: 70%;
-	}
 	
 	.text p {
 		font-size: 1.35em;
@@ -777,9 +687,6 @@ label.span4 {
 @media screen and (max-width: 480px) {
 	.social-icons i {
 		margin-right: 0px;
-	}
-	.user img {
-		width: 65%;
 	}
 	.social-icons {
 		margin-top: 1em;
@@ -817,27 +724,6 @@ label.span4 {
 	}
 	.top-left-grid,.top-right-grid {
 		padding: 0;
-	}
-	.top-left-grid label.color1, .top-right-grid label.color6 {
-		width: 360px;
-	}
-	.top-left-grid label.color2 {
-		width: 375px;
-	}
-	.top-left-grid label.color3 {
-		width: 290px;
-	}		
-	.top-left-grid label.color4 {
-		width: 200px;
-	}
-	.top-left-grid label.color5 {
-		width: 240px;
-	}
-	.top-right-grid label.color7, .top-right-grid label.color9 {
-		width: 220px;
-	}
-	.top-right-grid label.color8, .top-right-grid label.color10 {
-		width: 290px;
 	}
 	.top-right-grid {
 		margin-top: 3em;
@@ -992,27 +878,6 @@ label.span4 {
 		font-size: 1.15em;
 		padding: 0.7em 0;
 	}
-	.top-left-grid label.color1, .top-right-grid label.color6 {
-		width: 225px;
-	}
-	.top-left-grid label.color2 {
-		width: 240px;
-	}
-	.top-left-grid label.color3 {
-		width: 190px;
-	}
-	.top-left-grid label.color4 {
-		width: 120px;
-	}
-	.top-left-grid label.color5 {
-		width: 160px;
-	}
-	.top-right-grid label.color8, .top-right-grid label.color10 {
-		width: 190px;
-	}
-	.top-right-grid label.color7, .top-right-grid label.color9 {
-		width: 130px;
-	}
 	.about_user ul.message,.about_user ul.status,.about_user ul.place,.about_user ul.call,.about_user ul.wsbsite {
 		width: 100%;
 		display:block;
@@ -1022,14 +887,14 @@ label.span4 {
 		font-size: 1em;
 	}
 
-	.user {
-		width:50%;
-	}
+
 	.social-icons {
 		margin-top: 0.8em;
 	}
-	.user img {
-		width: 94%;
+	.social-icons i.fa {
+		width: 32px;
+		height: 32px;
+		font-size:1.4em;	
 	}
 	i.dribble,i.skype {
 		display:none;
@@ -1042,4 +907,3 @@ label.span4 {
 		margin: 1.2em 0;
 	}
 }
-
